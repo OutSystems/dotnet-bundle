@@ -45,6 +45,9 @@ namespace Dotnet.Bundle
         [Required]
         public bool NSHighResolutionCapable { get; set; }
 
+        [Required]
+        public bool NSRequiresAquaSystemAppearance { get; set; }
+
         public override bool Execute()
         {
             var builder = new StructureBuilder(this);

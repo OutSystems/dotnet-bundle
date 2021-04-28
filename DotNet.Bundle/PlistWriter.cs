@@ -38,7 +38,8 @@ namespace Dotnet.Bundle
                 xmlWriter.WriteStartElement("plist");
                 xmlWriter.WriteAttributeString("version", "1.0");
                 xmlWriter.WriteStartElement("dict");
-                
+
+                //This can be re-factored
                 WriteProperty(xmlWriter, nameof(_task.CFBundleName), _task.CFBundleName);
                 WriteProperty(xmlWriter, nameof(_task.CFBundleDisplayName), _task.CFBundleDisplayName);
                 WriteProperty(xmlWriter, nameof(_task.CFBundleIdentifier), _task.CFBundleIdentifier);
@@ -50,7 +51,8 @@ namespace Dotnet.Bundle
                 WriteProperty(xmlWriter, nameof(_task.CFBundleShortVersionString), _task.CFBundleShortVersionString);
                 WriteProperty(xmlWriter, nameof(_task.NSPrincipalClass), _task.NSPrincipalClass);
                 WriteProperty(xmlWriter, nameof(_task.NSHighResolutionCapable), _task.NSHighResolutionCapable);
-                
+                WriteProperty(xmlWriter, nameof(_task.NSRequiresAquaSystemAppearance), _task.NSRequiresAquaSystemAppearance);
+
                 xmlWriter.WriteEndElement();
                 xmlWriter.WriteEndElement();
             }
