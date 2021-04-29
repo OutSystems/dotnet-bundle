@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Xml;
+using Microsoft.Build.Framework;
 
 namespace Dotnet.Bundle
 {
@@ -8,6 +9,10 @@ namespace Dotnet.Bundle
     {
         private readonly BundleAppTask _task;
         private readonly StructureBuilder _builder;
+
+        private const string CFBundleURLName = "CFBundleURLName";
+        private const string CFBundleURLSchemes = "CFBundleURLSchemes";
+        private const char Separator = ';';
 
         public PlistWriter(BundleAppTask task, StructureBuilder builder)
         {
@@ -57,6 +62,12 @@ namespace Dotnet.Bundle
                     WriteProperty(xmlWriter, nameof(_task.NSRequiresAquaSystemAppearance), _task.NSRequiresAquaSystemAppearanceNullable.Value);
                 }
 
+                if (_task.CFBundleURLTypes.Length != 0)
+                {
+                    WriteCFBundleURLTypeProperty(xmlWriter, nameof(_task.CFBundleURLTypes), _task.CFBundleURLTypes);
+                }
+ 
+
                 xmlWriter.WriteEndElement();
                 xmlWriter.WriteEndElement();
             }
@@ -91,6 +102,45 @@ namespace Dotnet.Bundle
                 xmlWriter.WriteStartElement("false");
             }
             
+            xmlWriter.WriteEndElement();
+        }
+
+
+        private void WriteCFBundleURLTypeProperty(XmlWriter xmlWriter, string name, ITaskItem[] values)
+        {
+            xmlWriter.WriteStartElement("key");
+            xmlWriter.WriteString(name);
+            xmlWriter.WriteEndElement();
+
+            xmlWriter.WriteStartElement("array");
+            xmlWriter.WriteStartElement("dict");
+
+            foreach (var value in values)
+            {
+                xmlWriter.WriteStartElement("key");
+                xmlWriter.WriteString(CFBundleURLName);
+                xmlWriter.WriteEndElement();
+                xmlWriter.WriteStartElement("string");
+                xmlWriter.WriteString(value.GetMetadata(CFBundleURLName));
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("key");
+                xmlWriter.WriteString(CFBundleURLSchemes);
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("array");
+                string[] urlSchemes = value.GetMetadata(CFBundleURLSchemes).Split(Separator);
+                foreach(var urlScheme in urlSchemes)
+                {
+                    xmlWriter.WriteStartElement("string");
+                    xmlWriter.WriteString(urlScheme);
+                    xmlWriter.WriteEndElement();
+                }
+                xmlWriter.WriteEndElement();
+
+            }
+
+            xmlWriter.WriteEndElement();
             xmlWriter.WriteEndElement();
         }
     }

@@ -37,6 +37,16 @@
     <NSRequiresAquaSystemAppearance>false</NSRequiresAquaSystemAppearance>
   </PropertyGroup>
   <ItemGroup>
+    <CFBundleURLTypes Include="1st">
+        <CFBundleURLName>TestApp URL</CFBundleURLName>
+        <CFBundleURLSchemes>testappurl;testappurl://</CFBundleURLSchemes>
+    </CFBundleURLTypes>
+    <CFBundleURLTypes Include="2nd">
+        <CFBundleURLName>TestApp URL2</CFBundleURLName>
+        <CFBundleURLSchemes>test://</CFBundleURLSchemes>
+    </CFBundleURLTypes>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Dotnet.Bundle" Version="$(DotnetBundleTestVersion)" />
   </ItemGroup>
 </Project>
