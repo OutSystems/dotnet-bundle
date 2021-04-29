@@ -44,7 +44,7 @@
     </CFBundleURLTypes>
     <CFBundleURLTypes Include="dummy">
         <CFBundleURLName>TestApp URL2</CFBundleURLName>
-        <CFBundleURLSchemes>test://;</CFBundleURLSchemes>
+        <CFBundleURLSchemes>test://</CFBundleURLSchemes>
     </CFBundleURLTypes>
   </ItemGroup>
   <ItemGroup>

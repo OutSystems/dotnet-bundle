@@ -11,6 +11,7 @@ namespace Dotnet.Bundle
         private readonly StructureBuilder _builder;
 
         private const char Separator = ';';
+        private readonly string[] PropertiesWithMandatoryArray = { "CFBundleURLSchemes" };
 
         public PlistWriter(BundleAppTask task, StructureBuilder builder)
         {
@@ -140,15 +141,15 @@ namespace Dotnet.Bundle
                 xmlWriter.WriteStartElement("dict");
 
                 var metadataDictionary = value.CloneCustomMetadata();
-                foreach (var key in metadataDictionary.Keys)
+                foreach (var entry in metadataDictionary.Keys)
                 {
-                    var dictValue = metadataDictionary[key].ToString();
+                    var dictValue = metadataDictionary[entry].ToString();
 
-                    if (dictValue.Contains(Separator.ToString())) //array
+                    if (dictValue.Contains(Separator.ToString()) || Array.Exists(PropertiesWithMandatoryArray, el => el == entry.ToString())) //array
                     {
-                        WriteProperty(xmlWriter, key.ToString(), dictValue.ToString().Split(Separator));
+                        WriteProperty(xmlWriter, entry.ToString(), dictValue.ToString().Split(Separator));
                     } else {
-                        WriteProperty(xmlWriter, key.ToString(), dictValue.ToString());
+                        WriteProperty(xmlWriter, entry.ToString(), dictValue.ToString());
                     }
                 }
 
