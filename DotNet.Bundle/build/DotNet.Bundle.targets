@@ -38,8 +38,6 @@
       <NSPrincipalClass Condition="'$(NSPrincipalClass)' == ''">NSApplication</NSPrincipalClass>
       
       <NSHighResolutionCapable Condition="'$(NSHighResolutionCapable)' == ''" >true</NSHighResolutionCapable>
-
-      <NSRequiresAquaSystemAppearance Condition="'$(NSRequiresAquaSystemAppearance)' == ''" >true</NSRequiresAquaSystemAppearance>
       
     </PropertyGroup>
     

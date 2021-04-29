@@ -51,7 +51,11 @@ namespace Dotnet.Bundle
                 WriteProperty(xmlWriter, nameof(_task.CFBundleShortVersionString), _task.CFBundleShortVersionString);
                 WriteProperty(xmlWriter, nameof(_task.NSPrincipalClass), _task.NSPrincipalClass);
                 WriteProperty(xmlWriter, nameof(_task.NSHighResolutionCapable), _task.NSHighResolutionCapable);
-                WriteProperty(xmlWriter, nameof(_task.NSRequiresAquaSystemAppearance), _task.NSRequiresAquaSystemAppearance);
+
+                if (_task.NSRequiresAquaSystemAppearanceNullable.HasValue)
+                {
+                    WriteProperty(xmlWriter, nameof(_task.NSRequiresAquaSystemAppearance), _task.NSRequiresAquaSystemAppearanceNullable.Value);
+                }
 
                 xmlWriter.WriteEndElement();
                 xmlWriter.WriteEndElement();

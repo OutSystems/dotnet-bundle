@@ -45,8 +45,12 @@ namespace Dotnet.Bundle
         [Required]
         public bool NSHighResolutionCapable { get; set; }
 
-        [Required]
-        public bool NSRequiresAquaSystemAppearance { get; set; }
+        public bool NSRequiresAquaSystemAppearance {
+            get => NSRequiresAquaSystemAppearanceNullable.Value;
+            set => NSRequiresAquaSystemAppearanceNullable = value;
+        }
+
+        internal bool? NSRequiresAquaSystemAppearanceNullable { get; private set; }
 
         public override bool Execute()
         {

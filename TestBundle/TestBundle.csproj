@@ -15,24 +15,28 @@
               <command>dotnet pack ..\\Dotnet.Bundle\\ -p:Configuration=$(Configuration) -p:PackageVersion=$(DotnetBundleTestVersion)</command>
             </Command>
             <Command>
+              <type>BeforeBuild</type>
+              <command>dotnet restore</command>
+            </Command>
+            <Command>
               <type>AfterBuild</type>
               <command>dotnet msbuild -t:BundleApp -p:RuntimeIdentifier=osx-x64 -p:Configuration=$(Configuration)</command>
             </Command>
           </CustomCommands>
         </CustomCommands>
   </PropertyGroup>
-   <!-- Defines Info.plist of ServiceStudio.app -->
+   <!-- Defines Info.plist -->
    <PropertyGroup>
-    <CFBundleName>TestBundle</CFBundleName> <!-- Also defines .app file name -->
+    <CFBundleName>TestBundle</CFBundleName> 
     <CFBundleDisplayName>TestBundle</CFBundleDisplayName>
     <CFBundleShortVersionString>TestBundle</CFBundleShortVersionString>
-    <CFBundleIconFile>IconTest.icns</CFBundleIconFile> <!-- Will be copied from output directory -->
+    <CFBundleIconFile>IconTest.icns</CFBundleIconFile>
     <NSPrincipalClass>NSApplication</NSPrincipalClass>
     <CFBundlePackageType>AAPL</CFBundlePackageType>
     <CFBundleSignature>4242</CFBundleSignature>
-    <NSRequiresAquaSystemAppearance>true</NSRequiresAquaSystemAppearance> <!-- TEMP: Remove black border from window when on dark theme -->
+    <NSRequiresAquaSystemAppearance>false</NSRequiresAquaSystemAppearance>
   </PropertyGroup>
   <ItemGroup>
-        <PackageReference Include="Dotnet.Bundle" Version="$(DotnetBundleTestVersion)" />
+    <PackageReference Include="Dotnet.Bundle" Version="$(DotnetBundleTestVersion)" />
   </ItemGroup>
 </Project>
