@@ -10,8 +10,6 @@ namespace Dotnet.Bundle
         private readonly BundleAppTask _task;
         private readonly StructureBuilder _builder;
 
-        private const string CFBundleURLName = "CFBundleURLName";
-        private const string CFBundleURLSchemes = "CFBundleURLSchemes";
         private const char Separator = ';';
 
         public PlistWriter(BundleAppTask task, StructureBuilder builder)
@@ -105,6 +103,26 @@ namespace Dotnet.Bundle
             xmlWriter.WriteEndElement();
         }
 
+        private void WriteProperty(XmlWriter xmlWriter, string name, string[] values)
+        {
+            if (values.Length != 0)
+            {
+                xmlWriter.WriteStartElement("key");
+                xmlWriter.WriteString(name);
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("array");
+                foreach (var value in values)
+                {
+                    xmlWriter.WriteStartElement("string");
+                    xmlWriter.WriteString(value);
+                    xmlWriter.WriteEndElement();
+                }
+
+                xmlWriter.WriteEndElement();
+            }
+        }
+
 
         private void WriteCFBundleURLTypeProperty(XmlWriter xmlWriter, string name, ITaskItem[] values)
         {
@@ -112,36 +130,29 @@ namespace Dotnet.Bundle
             xmlWriter.WriteString(name);
             xmlWriter.WriteEndElement();
 
-            xmlWriter.WriteStartElement("array");
-            xmlWriter.WriteStartElement("dict");
+            xmlWriter.WriteStartElement("array");            
 
             foreach (var value in values)
             {
-                xmlWriter.WriteStartElement("key");
-                xmlWriter.WriteString(CFBundleURLName);
-                xmlWriter.WriteEndElement();
-                xmlWriter.WriteStartElement("string");
-                xmlWriter.WriteString(value.GetMetadata(CFBundleURLName));
-                xmlWriter.WriteEndElement();
+                xmlWriter.WriteStartElement("dict");
 
-                xmlWriter.WriteStartElement("key");
-                xmlWriter.WriteString(CFBundleURLSchemes);
-                xmlWriter.WriteEndElement();
-
-                xmlWriter.WriteStartElement("array");
-                string[] urlSchemes = value.GetMetadata(CFBundleURLSchemes).Split(Separator);
-                foreach(var urlScheme in urlSchemes)
+                var metadataDictionary = value.CloneCustomMetadata();
+                foreach (var key in metadataDictionary.Keys)
                 {
-                    xmlWriter.WriteStartElement("string");
-                    xmlWriter.WriteString(urlScheme);
-                    xmlWriter.WriteEndElement();
-                }
-                xmlWriter.WriteEndElement();
+                    var dictValue = metadataDictionary[key].ToString();
 
+                    if (dictValue.Contains(Separator.ToString())) //array
+                    {
+                        WriteProperty(xmlWriter, key.ToString(), dictValue.ToString().Split(Separator));
+                    } else {
+                        WriteProperty(xmlWriter, key.ToString(), dictValue.ToString());
+                    }
+                }
+
+                xmlWriter.WriteEndElement(); //End dict
             }
 
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteEndElement();
+            xmlWriter.WriteEndElement(); //End outside array
         }
     }
 }

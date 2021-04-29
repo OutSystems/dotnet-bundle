@@ -37,11 +37,11 @@
     <NSRequiresAquaSystemAppearance>false</NSRequiresAquaSystemAppearance>
   </PropertyGroup>
   <ItemGroup>
-    <CFBundleURLTypes Include="1st">
+    <CFBundleURLTypes Include="dummy">
         <CFBundleURLName>TestApp URL</CFBundleURLName>
         <CFBundleURLSchemes>testappurl;testappurl://</CFBundleURLSchemes>
     </CFBundleURLTypes>
-    <CFBundleURLTypes Include="2nd">
+    <CFBundleURLTypes Include="dummy">
         <CFBundleURLName>TestApp URL2</CFBundleURLName>
         <CFBundleURLSchemes>test://</CFBundleURLSchemes>
     </CFBundleURLTypes>
