@@ -139,17 +139,19 @@ namespace Dotnet.Bundle
             foreach (var value in values)
             {
                 xmlWriter.WriteStartElement("dict");
-
                 var metadataDictionary = value.CloneCustomMetadata();
+
                 foreach (var entry in metadataDictionary.Keys)
                 {
                     var dictValue = metadataDictionary[entry].ToString();
+                    var dictValueString = dictValue.ToString();
+                    var entryString = entry.ToString();
 
-                    if (dictValue.Contains(Separator.ToString()) || Array.Exists(PropertiesWithMandatoryArray, el => el == entry.ToString())) //array
+                    if (dictValue.Contains(Separator.ToString()) || Array.Exists(PropertiesWithMandatoryArray, el => el == entryString)) //array
                     {
-                        WriteProperty(xmlWriter, entry.ToString(), dictValue.ToString().Split(Separator));
+                        WriteProperty(xmlWriter, entryString, dictValueString.Split(Separator));
                     } else {
-                        WriteProperty(xmlWriter, entry.ToString(), dictValue.ToString());
+                        WriteProperty(xmlWriter, entryString, dictValueString);
                     }
                 }
 

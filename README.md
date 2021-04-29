@@ -47,7 +47,7 @@ Define properties to override default bundle values
     </CFBundleURLTypes>
     <CFBundleURLTypes Include="dummy">
         <CFBundleURLName>TestApp URL2</CFBundleURLName>
-        <CFBundleURLSchemes>test://;</CFBundleURLSchemes> <!-- Be sure to include a ";" separator as well when having 1 parameter, since CFBundleURLSchemes makes it mandatory to be an array -->
+        <CFBundleURLSchemes>test://</CFBundleURLSchemes>
     </CFBundleURLTypes>
 </ItemGroup>
 ```
