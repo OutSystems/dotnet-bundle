@@ -62,7 +62,7 @@ namespace Dotnet.Bundle
 
                 if (_task.CFBundleURLTypes.Length != 0)
                 {
-                    WriteCFBundleURLTypeProperty(xmlWriter, nameof(_task.CFBundleURLTypes), _task.CFBundleURLTypes);
+                    WriteProperty(xmlWriter, nameof(_task.CFBundleURLTypes), _task.CFBundleURLTypes);
                 }
  
 
@@ -114,9 +114,12 @@ namespace Dotnet.Bundle
                 xmlWriter.WriteStartElement("array");
                 foreach (var value in values)
                 {
-                    xmlWriter.WriteStartElement("string");
-                    xmlWriter.WriteString(value);
-                    xmlWriter.WriteEndElement();
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        xmlWriter.WriteStartElement("string");
+                        xmlWriter.WriteString(value);
+                        xmlWriter.WriteEndElement();
+                    }
                 }
 
                 xmlWriter.WriteEndElement();
@@ -124,7 +127,7 @@ namespace Dotnet.Bundle
         }
 
 
-        private void WriteCFBundleURLTypeProperty(XmlWriter xmlWriter, string name, ITaskItem[] values)
+        private void WriteProperty(XmlWriter xmlWriter, string name, ITaskItem[] values)
         {
             xmlWriter.WriteStartElement("key");
             xmlWriter.WriteString(name);

@@ -43,11 +43,11 @@ Define properties to override default bundle values
     <!-- Optional URLTypes.Check TestBundle.csproj for a working example. -->
     <CFBundleURLTypes Include="dummy"> <!-- The name of this file is irrelevant, it's a MSBuild requirement.-->
         <CFBundleURLName>TestApp URL</CFBundleURLName>
-        <CFBundleURLSchemes>testappurl;testappurl://</CFBundleURLSchemes>
+        <CFBundleURLSchemes>testappurl;testappurl://</CFBundleURLSchemes> <!-- Note the ";" separator-->
     </CFBundleURLTypes>
     <CFBundleURLTypes Include="dummy">
         <CFBundleURLName>TestApp URL2</CFBundleURLName>
-        <CFBundleURLSchemes>test://</CFBundleURLSchemes>
+        <CFBundleURLSchemes>test://;</CFBundleURLSchemes> <!-- Be sure to include a ";" separator as well when having 1 parameter, since CFBundleURLSchemes makes it mandatory to be an array -->
     </CFBundleURLTypes>
 </ItemGroup>
 ```
