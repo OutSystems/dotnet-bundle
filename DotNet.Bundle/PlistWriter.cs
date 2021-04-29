@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using Microsoft.Build.Framework;
@@ -11,7 +12,7 @@ namespace Dotnet.Bundle
         private readonly StructureBuilder _builder;
 
         private const char Separator = ';';
-        private readonly string[] PropertiesWithMandatoryArray = { "CFBundleURLSchemes" };
+        private static readonly List<string> ArrayTypeProperties = new List<string>{ "CFBundleURLSchemes" };
 
         public PlistWriter(BundleAppTask task, StructureBuilder builder)
         {
@@ -147,7 +148,7 @@ namespace Dotnet.Bundle
                     var dictValueString = dictValue.ToString();
                     var entryString = entry.ToString();
 
-                    if (dictValue.Contains(Separator.ToString()) || Array.Exists(PropertiesWithMandatoryArray, el => el == entryString)) //array
+                    if (dictValue.Contains(Separator.ToString()) || ArrayTypeProperties.Contains(entryString)) //array
                     {
                         WriteProperty(xmlWriter, entryString, dictValueString.Split(Separator));
                     } else {
