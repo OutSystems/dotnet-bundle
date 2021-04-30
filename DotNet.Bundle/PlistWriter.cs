@@ -1,6 +1,7 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using Microsoft.Build.Framework;
 
@@ -11,8 +12,8 @@ namespace Dotnet.Bundle
         private readonly BundleAppTask _task;
         private readonly StructureBuilder _builder;
 
+        private static readonly string[] ArrayTypeProperties = { "CFBundleURLSchemes" };
         private const char Separator = ';';
-        private static readonly List<string> ArrayTypeProperties = new List<string>{ "CFBundleURLSchemes" };
 
         public PlistWriter(BundleAppTask task, StructureBuilder builder)
         {
@@ -142,17 +143,16 @@ namespace Dotnet.Bundle
                 xmlWriter.WriteStartElement("dict");
                 var metadataDictionary = value.CloneCustomMetadata();
 
-                foreach (var entry in metadataDictionary.Keys)
+                foreach (DictionaryEntry entry in metadataDictionary)
                 {
-                    var dictValue = metadataDictionary[entry].ToString();
-                    var dictValueString = dictValue.ToString();
-                    var entryString = entry.ToString();
+                    var dictValue = entry.Value.ToString();
+                    var dictKey = entry.Key.ToString();
 
-                    if (dictValue.Contains(Separator.ToString()) || ArrayTypeProperties.Contains(entryString)) //array
+                    if (dictValue.Contains(Separator.ToString()) || ArrayTypeProperties.Contains(dictKey)) //array
                     {
-                        WriteProperty(xmlWriter, entryString, dictValueString.Split(Separator));
+                        WriteProperty(xmlWriter, dictKey, dictValue.Split(Separator));
                     } else {
-                        WriteProperty(xmlWriter, entryString, dictValueString);
+                        WriteProperty(xmlWriter, dictKey, dictValue);
                     }
                 }
 
