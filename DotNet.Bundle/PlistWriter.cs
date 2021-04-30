@@ -151,7 +151,9 @@ namespace Dotnet.Bundle
                     if (dictValue.Contains(Separator.ToString()) || ArrayTypeProperties.Contains(dictKey)) //array
                     {
                         WriteProperty(xmlWriter, dictKey, dictValue.Split(Separator));
-                    } else {
+                    }
+                    else
+                    {
                         WriteProperty(xmlWriter, dictKey, dictValue);
                     }
                 }
