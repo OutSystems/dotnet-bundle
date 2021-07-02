@@ -57,6 +57,7 @@
       NSHighResolutionCapable="$(NSHighResolutionCapable)"
       NSRequiresAquaSystemAppearance="$(NSRequiresAquaSystemAppearance)"
       CFBundleURLTypes="@(CFBundleURLTypes)"
+      LSEnvironment="@(LSEnvironment)"
       />
     
   </Target>
