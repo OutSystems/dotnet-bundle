@@ -67,6 +67,11 @@ namespace Dotnet.Bundle
                 {
                     WriteProperty(xmlWriter, nameof(_task.CFBundleURLTypes), _task.CFBundleURLTypes);
                 }
+
+                if (_task.LSEnvironment.Length != 0) 
+                {
+                    WriteProperty(xmlWriter, nameof(_task.LSEnvironment), _task.LSEnvironment);
+                }
  
 
                 xmlWriter.WriteEndElement();

@@ -53,6 +53,8 @@ namespace Dotnet.Bundle
 
         public ITaskItem[] CFBundleURLTypes { get; set; }
 
+        public ITaskItem[] LSEnvironment { get; set; }
+
         public override bool Execute()
         {
             var builder = new StructureBuilder(this);

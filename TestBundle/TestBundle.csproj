@@ -48,6 +48,12 @@
     </CFBundleURLTypes>
   </ItemGroup>
   <ItemGroup>
+    <LSEnvironment Include="dummy">
+      <SomeEnvironmentKey>SomeValue</SomeEnvironmentKey>
+      <SomeOtherKey>SomeOtherValue</SomeOtherKey>
+    </LSEnvironment>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Dotnet.Bundle" Version="$(DotnetBundleTestVersion)" />
   </ItemGroup>
 </Project>
