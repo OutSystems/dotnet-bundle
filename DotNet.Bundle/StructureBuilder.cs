@@ -15,7 +15,7 @@ namespace Dotnet.Bundle
         
         public string PublishDirectory => _task.PublishDir;
 
-        public string AppDirectory => Path.Combine(Path.Combine(PublishDirectory, _task.CFBundleDisplayName + ".app"));
+        public string AppDirectory => Path.Combine(Path.Combine(PublishDirectory, _task.CFBundleDisplayName + (_task.IsBundlingWrapperApp ? "Wrapper" : string.Empty) + ".app"));
         
         public string ContentsDirectory => Path.Combine(AppDirectory, "Contents");
         

@@ -33,15 +33,32 @@
       <CFBundleIconFile Condition="'$(CFBundleIconFile)' == '' AND '$(TargetName)' != ''">$(TargetName).icns</CFBundleIconFile>
       <CFBundleIconFile Condition="'$(CFBundleIconFile)' == '' AND '$(TargetName)' == ''">none.icns</CFBundleIconFile>
 
-      <CFBundleShortVersionString Condition="'$(CFBundleVersion)' == ''">$(CFBundleVersion)</CFBundleShortVersionString>
+      <CFBundleShortVersionString Condition="'$(CFBundleShortVersionString)' == ''">$(CFBundleVersion)</CFBundleShortVersionString>
+
+      <CFBundleInfoDictionaryVersion Condition="'$(CFBundleInfoDictionaryVersion)' == ''">6.0</CFBundleInfoDictionaryVersion>
+
+      <CFBundleURLTypesValues>@(CFBundleURLTypes)</CFBundleURLTypesValues>
 
       <NSPrincipalClass Condition="'$(NSPrincipalClass)' == ''">NSApplication</NSPrincipalClass>
       
       <NSHighResolutionCapable Condition="'$(NSHighResolutionCapable)' == ''" >true</NSHighResolutionCapable>
-      
+        
+    </PropertyGroup>
+
+    <!--Wrapper App Overrides-->
+    <PropertyGroup Condition="'$(IsBundlingWrapperApp)' == 'True'">
+        
+      <CFBundleIdentifier>$(CFBundleIdentifierWrapper)</CFBundleIdentifier>
+      <CFBundleURLTypesValues>@(CFBundleURLTypesWrapper)</CFBundleURLTypesValues>
+      <NSHighResolutionCapable>$(NSHighResolutionCapableWrapper)</NSHighResolutionCapable> 
+      <NSRequiresAquaSystemAppearance>$(NSRequiresAquaSystemAppearanceWrapper)</NSRequiresAquaSystemAppearance>
+      <LSUIElement>$(LSUIElementWrapper)</LSUIElement>
+      <LSBackgroundOnly>$(LSBackgroundOnlyWrapper)</LSBackgroundOnly>
+        
     </PropertyGroup>
     
     <BundleAppTask
+      IsBundlingWrapperApp="$(IsBundlingWrapperApp)"
       OutDir="$(OutDir)"
       PublishDir="$(PublishDir)"
       CFBundleName="$(CFBundleName)"
@@ -53,11 +70,14 @@
       CFBundleExecutable="$(CFBundleExecutable)"
       CFBundleIconFile="$(CFBundleIconFile)"
       CFBundleShortVersionString="$(CFBundleShortVersionString)"
+      CFBundleInfoDictionaryVersion="$(CFBundleInfoDictionaryVersion)"
+      CFBundleURLTypes="$(CFBundleURLTypesValues)"
       NSPrincipalClass="$(NSPrincipalClass)"
       NSHighResolutionCapable="$(NSHighResolutionCapable)"
       NSRequiresAquaSystemAppearance="$(NSRequiresAquaSystemAppearance)"
-      CFBundleURLTypes="@(CFBundleURLTypes)"
       LSEnvironment="@(LSEnvironment)"
+      LSUIElement="$(LSUIElement)"
+      LSBackgroundOnly="$(LSBackgroundOnly)"
       />
     
   </Target>
