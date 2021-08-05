@@ -19,12 +19,10 @@ namespace Dotnet.Bundle
                 new DirectoryInfo(_builder.OutputDirectory),
                 new DirectoryInfo(_builder.ResourcesDirectory));
 
-            if (!_task.IsBundlingWrapperApp) { // no content files if we are wrapping the App
-                CopyFiles(
-                    new DirectoryInfo(_builder.PublishDirectory),
-                    new DirectoryInfo(_builder.MacosDirectory),
-                    new DirectoryInfo(_builder.AppDirectory));
-            }
+            CopyFiles(
+                new DirectoryInfo(_builder.SourcesDirectory),
+                new DirectoryInfo(_builder.MacosDirectory),
+                new DirectoryInfo(_builder.AppDirectory));
         }
 
         private void CopyFiles(DirectoryInfo source, DirectoryInfo target, DirectoryInfo exclude)

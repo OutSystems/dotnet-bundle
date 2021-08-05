@@ -6,6 +6,12 @@ namespace Dotnet.Bundle
     public class BundleAppTask : Task
     {
         [Required]
+        public string AppName { get; set; }
+
+        [Required]
+        public string SourceDir { get; set; }
+
+        [Required]
         public string OutDir { get; set; }
         
         [Required]
@@ -71,13 +77,6 @@ namespace Dotnet.Bundle
         }
 
         internal bool? LSBackgroundOnlyNullable { get; private set; }
-
-        public bool IsBundlingWrapperApp {
-            get => IsBundlingWrapperAppNullable.Value;
-            set => IsBundlingWrapperAppNullable = value;
-        }
-
-        internal bool? IsBundlingWrapperAppNullable { get; private set; }
 
         public ITaskItem[] CFBundleURLTypes { get; set; }
 

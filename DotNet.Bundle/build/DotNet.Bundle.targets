@@ -10,7 +10,6 @@
   <Target Name="BundleApp" DependsOnTargets="Publish">
     
     <PropertyGroup>
-
       <CFBundleName Condition="'$(CFBundleName)' == '' AND '$(TargetName)' != ''">$(TargetName)</CFBundleName>
       <CFBundleName Condition="'$(CFBundleName)' == '' AND '$(TargetName)' == ''">Application</CFBundleName>
 
@@ -41,24 +40,18 @@
 
       <NSPrincipalClass Condition="'$(NSPrincipalClass)' == ''">NSApplication</NSPrincipalClass>
       
-      <NSHighResolutionCapable Condition="'$(NSHighResolutionCapable)' == ''" >true</NSHighResolutionCapable>
+      <CFBundleURLTypesValues>@(CFBundleURLTypes)</CFBundleURLTypesValues>
+    
+      <LSEnvironmentValues>@(LSEnvironemnt)</LSEnvironmentValues>
+
+      <AppName Condition="'$(AppName)' == ''">$(CFBundleDisplayName)</AppName>
         
+      <SourcesDirectory Condition="'$(SourcesDirectory)' == ''">$(PublishDir)</SourcesDirectory>
     </PropertyGroup>
 
-    <!--Wrapper App Overrides-->
-    <PropertyGroup Condition="'$(IsBundlingWrapperApp)' == 'True'">
-        
-      <CFBundleIdentifier>$(CFBundleIdentifierWrapper)</CFBundleIdentifier>
-      <CFBundleURLTypesValues>@(CFBundleURLTypesWrapper)</CFBundleURLTypesValues>
-      <NSHighResolutionCapable>$(NSHighResolutionCapableWrapper)</NSHighResolutionCapable> 
-      <NSRequiresAquaSystemAppearance>$(NSRequiresAquaSystemAppearanceWrapper)</NSRequiresAquaSystemAppearance>
-      <LSUIElement>$(LSUIElementWrapper)</LSUIElement>
-      <LSBackgroundOnly>$(LSBackgroundOnlyWrapper)</LSBackgroundOnly>
-        
-    </PropertyGroup>
-    
     <BundleAppTask
-      IsBundlingWrapperApp="$(IsBundlingWrapperApp)"
+      AppName="$(AppName)"
+      SourcesDir="$(SourcesDirectory)"
       OutDir="$(OutDir)"
       PublishDir="$(PublishDir)"
       CFBundleName="$(CFBundleName)"
@@ -75,7 +68,7 @@
       NSPrincipalClass="$(NSPrincipalClass)"
       NSHighResolutionCapable="$(NSHighResolutionCapable)"
       NSRequiresAquaSystemAppearance="$(NSRequiresAquaSystemAppearance)"
-      LSEnvironment="@(LSEnvironment)"
+      LSEnvironment="$(LSEnvironmentValues)"
       LSUIElement="$(LSUIElement)"
       LSBackgroundOnly="$(LSBackgroundOnly)"
       />

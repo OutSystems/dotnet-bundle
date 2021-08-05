@@ -11,11 +11,13 @@ namespace Dotnet.Bundle
             _task = task;
         }
 
+        public string SourcesDirectory => _task.SourceDir;
+
         public string OutputDirectory => _task.OutDir;
         
         public string PublishDirectory => _task.PublishDir;
 
-        public string AppDirectory => Path.Combine(Path.Combine(PublishDirectory, _task.CFBundleDisplayName + (_task.IsBundlingWrapperApp ? "Wrapper" : string.Empty) + ".app"));
+        public string AppDirectory => Path.Combine(Path.Combine(PublishDirectory, _task.AppName + ".app"));
         
         public string ContentsDirectory => Path.Combine(AppDirectory, "Contents");
         
