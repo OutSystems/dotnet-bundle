@@ -55,9 +55,14 @@ namespace Dotnet.Bundle
                 WriteProperty(xmlWriter, nameof(_task.CFBundleExecutable), _task.CFBundleExecutable);
                 WriteProperty(xmlWriter, nameof(_task.CFBundleIconFile), Path.GetFileName(_task.CFBundleIconFile));
                 WriteProperty(xmlWriter, nameof(_task.CFBundleShortVersionString), _task.CFBundleShortVersionString);
+                WriteProperty(xmlWriter, nameof(_task.CFBundleInfoDictionaryVersion), _task.CFBundleInfoDictionaryVersion);
                 WriteProperty(xmlWriter, nameof(_task.NSPrincipalClass), _task.NSPrincipalClass);
-                WriteProperty(xmlWriter, nameof(_task.NSHighResolutionCapable), _task.NSHighResolutionCapable);
 
+                if (_task.NSHighResolutionCapableNullable.HasValue) 
+                {
+                    WriteProperty(xmlWriter, nameof(_task.NSHighResolutionCapable), _task.NSHighResolutionCapableNullable.Value);
+                }
+                
                 if (_task.NSRequiresAquaSystemAppearanceNullable.HasValue)
                 {
                     WriteProperty(xmlWriter, nameof(_task.NSRequiresAquaSystemAppearance), _task.NSRequiresAquaSystemAppearanceNullable.Value);
@@ -72,7 +77,16 @@ namespace Dotnet.Bundle
                 {
                     WriteProperty(xmlWriter, nameof(_task.LSEnvironment), _task.LSEnvironment);
                 }
- 
+
+                if (_task.LSUIElementNullable.HasValue) 
+                {
+                    WriteProperty(xmlWriter, nameof(_task.LSUIElement), _task.LSUIElementNullable.Value);
+                }
+
+                if (_task.LSBackgroundOnlyNullable.HasValue) 
+                {
+                    WriteProperty(xmlWriter, nameof(_task.LSBackgroundOnly), _task.LSBackgroundOnlyNullable.Value);
+                }
 
                 xmlWriter.WriteEndElement();
                 xmlWriter.WriteEndElement();

@@ -11,7 +11,7 @@ namespace Dotnet.Bundle
             _task = task;
         }
 
-        public string SourcesDirectory => _task.SourceDir;
+        public string SourcesDirectory => _task.SourcesDir;
 
         public string OutputDirectory => _task.OutDir;
         

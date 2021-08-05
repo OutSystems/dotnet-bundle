@@ -9,7 +9,7 @@ namespace Dotnet.Bundle
         public string AppName { get; set; }
 
         [Required]
-        public string SourceDir { get; set; }
+        public string SourcesDir { get; set; }
 
         [Required]
         public string OutDir { get; set; }
