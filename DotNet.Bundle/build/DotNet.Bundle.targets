@@ -36,13 +36,7 @@
 
       <CFBundleInfoDictionaryVersion Condition="'$(CFBundleInfoDictionaryVersion)' == ''">6.0</CFBundleInfoDictionaryVersion>
 
-      <CFBundleURLTypesValues>@(CFBundleURLTypes)</CFBundleURLTypesValues>
-
       <NSPrincipalClass Condition="'$(NSPrincipalClass)' == ''">NSApplication</NSPrincipalClass>
-      
-      <CFBundleURLTypesValues>@(CFBundleURLTypes)</CFBundleURLTypesValues>
-    
-      <LSEnvironmentValues>@(LSEnvironemnt)</LSEnvironmentValues>
 
       <AppName Condition="'$(AppName)' == ''">$(CFBundleDisplayName)</AppName>
         
@@ -64,11 +58,11 @@
       CFBundleIconFile="$(CFBundleIconFile)"
       CFBundleShortVersionString="$(CFBundleShortVersionString)"
       CFBundleInfoDictionaryVersion="$(CFBundleInfoDictionaryVersion)"
-      CFBundleURLTypes="$(CFBundleURLTypesValues)"
+      CFBundleURLTypes="@(CFBundleURLTypes)"
       NSPrincipalClass="$(NSPrincipalClass)"
       NSHighResolutionCapable="$(NSHighResolutionCapable)"
       NSRequiresAquaSystemAppearance="$(NSRequiresAquaSystemAppearance)"
-      LSEnvironment="$(LSEnvironmentValues)"
+      LSEnvironment="@(LSEnvironment)"
       LSUIElement="$(LSUIElement)"
       LSBackgroundOnly="$(LSBackgroundOnly)"
       />
