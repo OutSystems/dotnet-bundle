@@ -68,12 +68,12 @@ namespace Dotnet.Bundle
                     WriteProperty(xmlWriter, nameof(_task.NSRequiresAquaSystemAppearance), _task.NSRequiresAquaSystemAppearanceNullable.Value);
                 }
 
-                if (_task.CFBundleURLTypes.Length != 0)
+                if (_task.CFBundleURLTypes != null && _task.CFBundleURLTypes.Length != 0)
                 {
                     WriteProperty(xmlWriter, nameof(_task.CFBundleURLTypes), _task.CFBundleURLTypes);
                 }
 
-                if (_task.LSEnvironment.Length != 0) 
+                if (_task.LSEnvironment != null && _task.LSEnvironment.Length != 0) 
                 {
                     WriteProperty(xmlWriter, nameof(_task.LSEnvironment), _task.LSEnvironment);
                 }
