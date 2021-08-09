@@ -18,9 +18,9 @@ namespace Dotnet.Bundle
             CopyIcon(
                 new DirectoryInfo(_builder.OutputDirectory),
                 new DirectoryInfo(_builder.ResourcesDirectory));
-            
+
             CopyFiles(
-                new DirectoryInfo(_builder.PublishDirectory),
+                new DirectoryInfo(_builder.SourcesDirectory),
                 new DirectoryInfo(_builder.MacosDirectory),
                 new DirectoryInfo(_builder.AppDirectory));
         }

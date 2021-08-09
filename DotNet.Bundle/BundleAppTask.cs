@@ -6,6 +6,12 @@ namespace Dotnet.Bundle
     public class BundleAppTask : Task
     {
         [Required]
+        public string AppName { get; set; }
+
+        [Required]
+        public string SourcesDir { get; set; }
+
+        [Required]
         public string OutDir { get; set; }
         
         [Required]
@@ -36,13 +42,20 @@ namespace Dotnet.Bundle
         public string CFBundleIconFile { get; set; }
 
         [Required]
-        public string CFBundleShortVersionString { get; set; } 
+        public string CFBundleShortVersionString { get; set; }
+
+        [Required]
+        public string CFBundleInfoDictionaryVersion { get; set; }
 
         [Required]
         public string NSPrincipalClass { get; set; }
-        
-        [Required]
-        public bool NSHighResolutionCapable { get; set; }
+
+        public bool NSHighResolutionCapable {
+            get => NSHighResolutionCapableNullable.Value;
+            set => NSHighResolutionCapableNullable = value;
+        }
+
+        internal bool? NSHighResolutionCapableNullable { get; private set; }
 
         public bool NSRequiresAquaSystemAppearance {
             get => NSRequiresAquaSystemAppearanceNullable.Value;
@@ -50,6 +63,20 @@ namespace Dotnet.Bundle
         }
 
         internal bool? NSRequiresAquaSystemAppearanceNullable { get; private set; }
+
+        public bool LSUIElement {
+            get => LSUIElementNullable.Value;
+            set => LSUIElementNullable = value;
+        }
+
+        internal bool? LSUIElementNullable { get; private set; }
+
+        public bool LSBackgroundOnly {
+            get => LSBackgroundOnlyNullable.Value;
+            set => LSBackgroundOnlyNullable = value;
+        }
+
+        internal bool? LSBackgroundOnlyNullable { get; private set; }
 
         public ITaskItem[] CFBundleURLTypes { get; set; }
 

@@ -10,7 +10,6 @@
   <Target Name="BundleApp" DependsOnTargets="Publish">
     
     <PropertyGroup>
-
       <CFBundleName Condition="'$(CFBundleName)' == '' AND '$(TargetName)' != ''">$(TargetName)</CFBundleName>
       <CFBundleName Condition="'$(CFBundleName)' == '' AND '$(TargetName)' == ''">Application</CFBundleName>
 
@@ -33,15 +32,25 @@
       <CFBundleIconFile Condition="'$(CFBundleIconFile)' == '' AND '$(TargetName)' != ''">$(TargetName).icns</CFBundleIconFile>
       <CFBundleIconFile Condition="'$(CFBundleIconFile)' == '' AND '$(TargetName)' == ''">none.icns</CFBundleIconFile>
 
-      <CFBundleShortVersionString Condition="'$(CFBundleVersion)' == ''">$(CFBundleVersion)</CFBundleShortVersionString>
+      <CFBundleShortVersionString Condition="'$(CFBundleShortVersionString)' == ''">$(CFBundleVersion)</CFBundleShortVersionString>
+
+      <CFBundleInfoDictionaryVersion Condition="'$(CFBundleInfoDictionaryVersion)' == ''">6.0</CFBundleInfoDictionaryVersion>
 
       <NSPrincipalClass Condition="'$(NSPrincipalClass)' == ''">NSApplication</NSPrincipalClass>
-      
-      <NSHighResolutionCapable Condition="'$(NSHighResolutionCapable)' == ''" >true</NSHighResolutionCapable>
-      
+
+      <AppName Condition="'$(AppName)' == ''">$(CFBundleDisplayName)</AppName>
+        
+      <SourcesDirectory Condition="'$(SourcesDirectory)' == ''">$(PublishDir)</SourcesDirectory>
     </PropertyGroup>
-    
+      
+    <ItemGroup>
+      <CFBundleURLTypes Remove="$(PlistExclusions)" />
+      <LSEnvironment Remove="$(PlistExclusions)" />
+    </ItemGroup>
+      
     <BundleAppTask
+      AppName="$(AppName)"
+      SourcesDir="$(SourcesDirectory)"
       OutDir="$(OutDir)"
       PublishDir="$(PublishDir)"
       CFBundleName="$(CFBundleName)"
@@ -53,11 +62,14 @@
       CFBundleExecutable="$(CFBundleExecutable)"
       CFBundleIconFile="$(CFBundleIconFile)"
       CFBundleShortVersionString="$(CFBundleShortVersionString)"
+      CFBundleInfoDictionaryVersion="$(CFBundleInfoDictionaryVersion)"
+      CFBundleURLTypes="@(CFBundleURLTypes)"
       NSPrincipalClass="$(NSPrincipalClass)"
       NSHighResolutionCapable="$(NSHighResolutionCapable)"
       NSRequiresAquaSystemAppearance="$(NSRequiresAquaSystemAppearance)"
-      CFBundleURLTypes="@(CFBundleURLTypes)"
       LSEnvironment="@(LSEnvironment)"
+      LSUIElement="$(LSUIElement)"
+      LSBackgroundOnly="$(LSBackgroundOnly)"
       />
     
   </Target>
