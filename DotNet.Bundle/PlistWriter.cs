@@ -57,6 +57,7 @@ namespace Dotnet.Bundle
                 WriteProperty(xmlWriter, nameof(_task.CFBundleShortVersionString), _task.CFBundleShortVersionString);
                 WriteProperty(xmlWriter, nameof(_task.CFBundleInfoDictionaryVersion), _task.CFBundleInfoDictionaryVersion);
                 WriteProperty(xmlWriter, nameof(_task.NSPrincipalClass), _task.NSPrincipalClass);
+                WriteProperty(xmlWriter, nameof(_task.MDItemKeywords), _task.MDItemKeywords);
 
                 if (_task.NSHighResolutionCapableNullable.HasValue) 
                 {

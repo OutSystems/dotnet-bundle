@@ -64,6 +64,7 @@
       CFBundleShortVersionString="$(CFBundleShortVersionString)"
       CFBundleInfoDictionaryVersion="$(CFBundleInfoDictionaryVersion)"
       CFBundleURLTypes="@(CFBundleURLTypes)"
+      MDItemKeywords="$(MDItemKeywords)"
       NSPrincipalClass="$(NSPrincipalClass)"
       NSHighResolutionCapable="$(NSHighResolutionCapable)"
       NSRequiresAquaSystemAppearance="$(NSRequiresAquaSystemAppearance)"

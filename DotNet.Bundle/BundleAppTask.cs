@@ -49,6 +49,8 @@ namespace Dotnet.Bundle
 
         [Required]
         public string NSPrincipalClass { get; set; }
+        
+        public string MDItemKeywords { get; set; }
 
         public bool NSHighResolutionCapable {
             get => NSHighResolutionCapableNullable.Value;
