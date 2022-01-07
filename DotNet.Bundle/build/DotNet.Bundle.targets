@@ -46,6 +46,7 @@
     <ItemGroup>
       <CFBundleURLTypes Remove="$(PlistExclusions)" />
       <LSEnvironment Remove="$(PlistExclusions)" />
+      <CFBundleAlternateNames Remove="$(PlistExclusions)" />
     </ItemGroup>
       
     <BundleAppTask
@@ -71,6 +72,7 @@
       LSEnvironment="@(LSEnvironment)"
       LSUIElement="$(LSUIElement)"
       LSBackgroundOnly="$(LSBackgroundOnly)"
+      CFBundleAlternateNames="@(CFBundleAlternateNames)"
       />
     
   </Target>
