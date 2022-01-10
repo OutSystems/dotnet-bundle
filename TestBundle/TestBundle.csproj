@@ -33,6 +33,7 @@
     <CFBundleDisplayName>TestBundle</CFBundleDisplayName>
     <CFBundleShortVersionString>TestBundle</CFBundleShortVersionString>
     <CFBundleIconFile>IconTest.icns</CFBundleIconFile>
+    <MDItemKeywords>TestBundle, Dummy</MDItemKeywords>
     <NSPrincipalClass>NSApplication</NSPrincipalClass>
     <CFBundlePackageType>AAPL</CFBundlePackageType>
     <CFBundleSignature>4242</CFBundleSignature>
@@ -55,6 +56,9 @@
       <SomeEnvironmentKey>SomeValue</SomeEnvironmentKey>
       <SomeOtherKey>SomeOtherValue</SomeOtherKey>
     </LSEnvironment>
+  </ItemGroup>
+  <ItemGroup>
+    <CFBundleAlternateNames Include="dummy">TestBundle;Dummy</CFBundleAlternateNames>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Dotnet.Bundle" Version="$(DotnetBundleTestVersion)" />

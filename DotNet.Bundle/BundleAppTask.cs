@@ -49,6 +49,8 @@ namespace Dotnet.Bundle
 
         [Required]
         public string NSPrincipalClass { get; set; }
+        
+        public string MDItemKeywords { get; set; }
 
         public bool NSHighResolutionCapable {
             get => NSHighResolutionCapableNullable.Value;
@@ -81,6 +83,8 @@ namespace Dotnet.Bundle
         public ITaskItem[] CFBundleURLTypes { get; set; }
 
         public ITaskItem[] LSEnvironment { get; set; }
+        
+        public string[] CFBundleAlternateNames { get; set; }
 
         public override bool Execute()
         {

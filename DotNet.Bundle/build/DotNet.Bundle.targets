@@ -46,6 +46,7 @@
     <ItemGroup>
       <CFBundleURLTypes Remove="$(PlistExclusions)" />
       <LSEnvironment Remove="$(PlistExclusions)" />
+      <CFBundleAlternateNames Remove="$(PlistExclusions)" />
     </ItemGroup>
       
     <BundleAppTask
@@ -64,12 +65,14 @@
       CFBundleShortVersionString="$(CFBundleShortVersionString)"
       CFBundleInfoDictionaryVersion="$(CFBundleInfoDictionaryVersion)"
       CFBundleURLTypes="@(CFBundleURLTypes)"
+      MDItemKeywords="$(MDItemKeywords)"
       NSPrincipalClass="$(NSPrincipalClass)"
       NSHighResolutionCapable="$(NSHighResolutionCapable)"
       NSRequiresAquaSystemAppearance="$(NSRequiresAquaSystemAppearance)"
       LSEnvironment="@(LSEnvironment)"
       LSUIElement="$(LSUIElement)"
       LSBackgroundOnly="$(LSBackgroundOnly)"
+      CFBundleAlternateNames="@(CFBundleAlternateNames)"
       />
     
   </Target>

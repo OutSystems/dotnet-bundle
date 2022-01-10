@@ -58,6 +58,11 @@ namespace Dotnet.Bundle
                 WriteProperty(xmlWriter, nameof(_task.CFBundleInfoDictionaryVersion), _task.CFBundleInfoDictionaryVersion);
                 WriteProperty(xmlWriter, nameof(_task.NSPrincipalClass), _task.NSPrincipalClass);
 
+                if (!string.IsNullOrEmpty(_task.MDItemKeywords))
+                {
+                    WriteProperty(xmlWriter, nameof(_task.MDItemKeywords), _task.MDItemKeywords);
+                }
+ 
                 if (_task.NSHighResolutionCapableNullable.HasValue) 
                 {
                     WriteProperty(xmlWriter, nameof(_task.NSHighResolutionCapable), _task.NSHighResolutionCapableNullable.Value);
@@ -86,6 +91,11 @@ namespace Dotnet.Bundle
                 if (_task.LSBackgroundOnlyNullable.HasValue) 
                 {
                     WriteProperty(xmlWriter, nameof(_task.LSBackgroundOnly), _task.LSBackgroundOnlyNullable.Value);
+                }
+
+                if (_task.CFBundleAlternateNames != null && _task.CFBundleAlternateNames.Length != 0)
+                {
+                    WriteProperty(xmlWriter, nameof(_task.CFBundleAlternateNames), _task.CFBundleAlternateNames);
                 }
 
                 xmlWriter.WriteEndElement();
