@@ -42,13 +42,7 @@
         
       <SourcesDirectory Condition="'$(SourcesDirectory)' == ''">$(PublishDir)</SourcesDirectory>
     </PropertyGroup>
-      
-    <ItemGroup>
-      <CFBundleURLTypes Remove="$(PlistExclusions)" />
-      <LSEnvironment Remove="$(PlistExclusions)" />
-      <CFBundleAlternateNames Remove="$(PlistExclusions)" />
-    </ItemGroup>
-      
+    
     <BundleAppTask
       AppName="$(AppName)"
       SourcesDir="$(SourcesDirectory)"

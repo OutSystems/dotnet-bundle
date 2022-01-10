@@ -58,7 +58,7 @@
     </LSEnvironment>
   </ItemGroup>
   <ItemGroup>
-    <CFBundleAlternateNames Include="dummy">TestBundle;Dummy</CFBundleAlternateNames>
+    <CFBundleAlternateNames Include="TestBundle;Dummy" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Dotnet.Bundle" Version="$(DotnetBundleTestVersion)" />
